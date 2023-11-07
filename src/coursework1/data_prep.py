@@ -133,10 +133,35 @@ if __name__ == '__main__':
     # The vaules that shows NaN are okay for this dataset, they are Intentionally blank, to better differentiate the data
 
     # Save to CSV file
-    save_CSVfile(df_Open_space_wards,'Open Space Wards')
-    save_CSVfile(df_Access_to_open_space_wards, 'Access to Open Space Wards')
+    #save_CSVfile(df_Open_space_wards,'Open Space Wards')
+    #save_CSVfile(df_Access_to_open_space_wards, 'Access to Open Space Wards')
 
+    #Data Exploration
 
+    #for Open Space Wards
+
+    #Draw a scatter graph of % of open space that has access (Open Space with access/All Open Space)
+    target_data = df_Open_space_wards.iloc[1:654,:]
+    ax1 = df_Open_space_wards.iloc[1:654,:].plot.scatter(x='All Open Space',y='Open Space with access',c='DarkBlue')
+    plt.show()
+
+    # Draw a scatter graph of % Open Space with access (Open Space with access/Total area of ward)
+    ax2 = df_Open_space_wards.iloc[1:654, :].plot.scatter(x='Total area of ward (sq m)',y='Open Space with access',c='DarkBlue')
+    plt.show()
+
+    # Use hist() to represent the distribution of data
+    hist = df_Open_space_wards.iloc[1:654,:]['% open space'].hist()
+    hist.plot()
+    plt.show()
+
+    # Use dp.plot.bar to plot a bar graph of Ward name vs. % open space for all the ward data
+    ax = df_Open_space_wards.iloc[1:654, :].plot.bar(x='Ward_NAME', y='% open space', rot=0,figsize=(200, 20))
+    plt.show()
+
+    # for Access to Open Space Wards
+    # Use dp.plot.bar to plot a bar graph of Ward name vs. Percentage of households with access to: Open Space of the first 50 data
+    ax = df_Access_to_open_space_wards.iloc[0:49, :].plot.bar(x='Ward name', y='Percentage of households with access to: Open Space', rot=0,figsize=(100, 20))
+    plt.show()
 
     #pd.set_option('display.max_rows', df_Access_to_open_space_wards.shape[0] + 1)
     #pd.set_option('display.max_columns', df_Access_to_open_space_wards.shape[1] + 1)
